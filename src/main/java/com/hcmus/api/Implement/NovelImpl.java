@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hcmus.api.ErrorHandler.AuthorNotFoundException;
+import com.hcmus.api.Utility.JsoupConnection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -99,7 +100,7 @@ public class NovelImpl {
 	    Integer total = 0;
 	   
 	   try {
-	      Document doc = Jsoup.connect(url).get();
+	      Document doc = JsoupConnection.connect(url);
 		  Element bookInformationElement = doc.select(".book-information.cf").get(0);
 	      image = bookInformationElement.child(0).child(0).child(0).attr("src");
 	      name = bookInformationElement.child(1).child(0).text();
@@ -134,7 +135,7 @@ public class NovelImpl {
         
 	  List<Novel> lsNovels = new ArrayList<>();
 	  try {
-		  Document doc = Jsoup.connect(url).get();
+		  Document doc = JsoupConnection.connect(url);
 		  Element parentElement = doc.getElementsByClass("book-img-text").get(0);
 		   // Get total page
 		   try {
@@ -184,11 +185,9 @@ public class NovelImpl {
 		   }  
 		  
 	} catch (Exception e) {
-		// TODO: handle exception
-		return NovelUtility.addLinks(new ResponseNovelSearchResult(StatusEnum.error.toString(), 0, page, key, sortBy, new ArrayList<Novel>()));
-	}
-	  
-	
+		  // TODO: handle exception
+		  return NovelUtility.addLinks(new ResponseNovelSearchResult(StatusEnum.error.toString(), 0, page, key, sortBy, new ArrayList<Novel>()));
+	  }
     lsNovels = NovelUtility.getListNovelsSort(lsNovels, "a-z");
     if(sortBy.equals("z-a"))
     {

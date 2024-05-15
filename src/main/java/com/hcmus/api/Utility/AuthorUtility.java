@@ -23,13 +23,13 @@ public class AuthorUtility {
 	        
 	        // The value of the "author" parameter is the second part
 	        String authorId = queryParams[1];
-	        
+
 	        return authorId;
 	}
 
 	public static Author addLinks(Author author) throws AuthorNotFoundException {
 
-		List<Novel> lsNovel = author.getListNovels();
+		List<Novel> lsNovel = author.getNovels();
 		if(lsNovel != null)
 		{
 			lsNovel.forEach(novel -> {

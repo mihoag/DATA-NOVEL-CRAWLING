@@ -1,26 +1,17 @@
 package com.hcmus.api.ResponseData;
 
 import com.hcmus.api.Dto.Novel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResponseDetailNovel extends Response{
     private Novel data;
-
-    
-    
-	public ResponseDetailNovel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public ResponseDetailNovel(String status, Novel data) {
 		super(status);
-		this.data = data;
-	}
-
-	public Novel getData() {
-		return data;
-	}
-
-	public void setData(Novel data) {
 		this.data = data;
 	}
 }

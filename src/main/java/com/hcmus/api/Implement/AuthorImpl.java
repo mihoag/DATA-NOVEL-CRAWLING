@@ -3,6 +3,7 @@ package com.hcmus.api.Implement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hcmus.api.Utility.JsoupConnection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,11 +26,10 @@ public class AuthorImpl {
 	   {
 		   List<Novel> lsNovel = new ArrayList<>();
 		   String url = urlWebsite + "/tac-gia?author=" + authorId;
-		   
 		   String authorName;
 		   
 		   try {
-			   Document doc = Jsoup.connect(url).get();
+			   Document doc = JsoupConnection.connect(url);
 			   Element authorPhotoElement = doc.getElementById("authorId");
 			   authorName = authorPhotoElement.child(1).child(0).text();
 			   

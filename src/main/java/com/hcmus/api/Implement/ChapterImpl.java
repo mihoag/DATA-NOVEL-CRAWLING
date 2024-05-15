@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hcmus.api.ErrorHandler.AuthorNotFoundException;
+import com.hcmus.api.Utility.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,10 +22,6 @@ import com.hcmus.api.ResponseData.ResponseDetailChapter;
 import com.hcmus.api.ResponseData.ResponseDetailNovel;
 import com.hcmus.api.ResponseData.ResponseListChapter;
 import com.hcmus.api.ResponseData.StatusEnum;
-import com.hcmus.api.Utility.AuthorUtility;
-import com.hcmus.api.Utility.CategoryUtility;
-import com.hcmus.api.Utility.ChapterUtility;
-import com.hcmus.api.Utility.NovelUtility;
 
 public class ChapterImpl  {
    public static String urlWebsite = "https://truyen.tangthuvien.vn";
@@ -112,7 +109,7 @@ public class ChapterImpl  {
 	   String content = "";
 	   try {
 		   url1 = urlWebsite + "/doc-truyen/" + novelId;
-		   Document doc = Jsoup.connect(url1).get();
+		   Document doc = JsoupConnection.connect(url1);
 		   Element bookInformationElement = doc.select(".book-information.cf").get(0);
 		   novelName = bookInformationElement.child(1).child(0).text();
 		      
@@ -130,8 +127,7 @@ public class ChapterImpl  {
 	    
 	   try {
 		url2 = url1 + "/chuong-" + chapterId;
-		System.out.println( "url2: " + url2);
-		Document doc = Jsoup.connect(url2).get();
+		Document doc = JsoupConnection.connect(url2);
 		Element novelTitleElement = doc.select(".col-xs-12.chapter").get(0);
 	    chapterName = novelTitleElement.child(1).text();
 		content = doc.select(".box-chap").get(0).text();

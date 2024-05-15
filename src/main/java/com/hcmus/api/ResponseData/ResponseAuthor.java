@@ -1,7 +1,13 @@
 package com.hcmus.api.ResponseData;
 
 import com.hcmus.api.Dto.Author;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResponseAuthor extends Response{
    private Author data;
    
@@ -9,18 +15,5 @@ public class ResponseAuthor extends Response{
    {
 	   super(status);
 	   this.data = author;
-   }
-
-   public ResponseAuthor() {
-	 super();
-	// TODO Auto-generated constructor stub
-   }
-
-   public Author getData() {
-	 return data;
-   }
-
-   public void setData(Author data) {
- 	this.data = data;
    }
 }
